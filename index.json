@@ -3,9 +3,9 @@
         "laba/logger-bundle": ["0.1"]
     },
     "_links": {
-        "recipe_template": "https://raw.githubusercontent.com/laba/recipes/main/r/{package}/{version}.json",
-        "repository": "https://github.com/laba/recipes",
-        "origin_template": "https://github.com/laba/recipes/blob/main/{package}/{version}"
+        "recipe_template": "https://raw.githubusercontent.com/Mettaron/recipes/main/r/{package}/{version}.json",
+        "repository": "https://github.com/Mettaron/recipes",
+        "origin_template": "https://github.com/Mettaron/recipes/blob/main/{package}/{version}"
     },
     "branch": "main"
 }
