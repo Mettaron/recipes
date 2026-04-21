@@ -1,0 +1,31 @@
+{
+    "manifests": {
+        "laba/logger-bundle": {
+            "ref": "main",
+            "manifest": {
+                "bundles": {
+                    "Laba\\LoggerBundle\\LoggerBundle": [
+                        "all"
+                    ]
+                },
+                "copy-from-recipe": {
+                    "config/": "%CONFIG_DIR%/"
+                }
+            },
+            "files": {
+                "config/packages/laba_logger.yaml": {
+                    "contents": [
+                        "laba_logger:",
+                        "    logger:",
+                        "        enabled: true",
+                        "        keys: []",
+                        "        # Example:",
+                        "        #   http_client: true",
+                        "        #   global_cache: false"
+                    ],
+                    "executable": false
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,7 @@
+laba_logger:
+    logger:
+        enabled: true
+        keys: []
+        # Example:
+        #   http_client: true
+        #   global_cache: false

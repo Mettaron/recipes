@@ -1,0 +1,8 @@
+{
+    "bundles": {
+        "Laba\\LoggerBundle\\LoggerBundle": ["all"]
+    },
+    "copy-from-recipe": {
+        "config/": "%CONFIG_DIR%/"
+    }
+}
