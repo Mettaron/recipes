@@ -1,0 +1,37 @@
+{
+    "manifests": {
+        "laba/client-bundle": {
+            "ref": "main",
+            "manifest": {
+                "bundles": {
+                    "Laba\\ClientBundle\\ClientBundle": [
+                        "all"
+                    ]
+                },
+                "copy-from-recipe": {
+                    "config/": "%CONFIG_DIR%/"
+                }
+            },
+            "files": {
+                "config/packages/client.yaml": {
+                    "contents": [
+                        "client:",
+                        "    global_cache:",
+                        "        enabled: true",
+                        "        dsn: '%env(REDIS_URL)%'",
+                        "        # timeout: 0.5",
+                        "        # cache_prefix: ''",
+                        "    clients:",
+                        "        # Example:",
+                        "        # my_api:",
+                        "        #     class: App\\Client\\MyApiClient",
+                        "        #     base_url: 'https://api.example.com'",
+                        "        #     api_key: '%env(MY_API_KEY)%'",
+                        "        #     cache_enabled: true"
+                    ],
+                    "executable": false
+                }
+            }
+        }
+    }
+}
