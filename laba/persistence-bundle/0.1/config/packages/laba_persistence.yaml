@@ -1,0 +1,18 @@
+laba_persistence:
+    # Path where archived CSV files will be stored.
+    # Must be a persistent volume — do NOT use var/ in Docker environments.
+    archive_dir: '/var/archives'
+
+    entities: []
+    # Example:
+    #   booking_log:
+    #     entity: App\Entity\BookingLog
+    #     action: archive         # delete | archive
+    #     keep_last: '1 year'
+    #     archive:
+    #       group_by: month       # day | week | month
+    #
+    #   api_request_log:
+    #     entity: App\Entity\ApiRequestLog
+    #     action: delete
+    #     keep_last: '90 days'

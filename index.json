@@ -1,6 +1,8 @@
 {
     "recipes": {
-        "laba/logger-bundle": ["0.1"]
+        "laba/logger-bundle": ["0.1"],
+        "laba/persistence-bundle": ["0.1"],
+        "laba/request-bundle": ["0.1"]
     },
     "_links": {
         "recipe_template": "https://raw.githubusercontent.com/Mettaron/recipes/main/r/{package}/{version}.json",
