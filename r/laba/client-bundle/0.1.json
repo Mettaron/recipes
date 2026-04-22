@@ -13,9 +13,9 @@
                 }
             },
             "files": {
-                "config/packages/client.yaml": {
+                "config/packages/laba_client.yaml": {
                     "contents": [
-                        "client:",
+                        "laba_client:",
                         "    global_cache:",
                         "        enabled: true",
                         "        dsn: '%env(REDIS_URL)%'",

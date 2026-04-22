@@ -1,4 +1,4 @@
-client:
+laba_client:
     global_cache:
         enabled: true
         dsn: '%env(REDIS_URL)%'
