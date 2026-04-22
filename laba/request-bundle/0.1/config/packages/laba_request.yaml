@@ -4,5 +4,4 @@ laba_request:
         excluded_paths:
             - '^(?!/api)'               # все що не /api/*
             - '^/api/api_request_logs'  # сам endpoint логів
-        retention: '30 days'            # null — вимкнути очистку
-        keep_last_per_path: true        # при очистці зберігати останній запис на кожен path
+        keep_last_per_path: true        # при retention зберігати останній запис на кожен path
