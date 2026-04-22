@@ -1,5 +1,6 @@
 {
     "recipes": {
+        "laba/client-bundle": ["0.1"],
         "laba/logger-bundle": ["0.1"],
         "laba/persistence-bundle": ["0.1"],
         "laba/request-bundle": ["0.1"]
