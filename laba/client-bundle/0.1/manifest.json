@@ -1,6 +1,6 @@
 {
     "bundles": {
-        "Laba\\ClientBundle\\ClientBundle": ["all"]
+        "Laba\\ClientBundle\\LabaClientBundle": ["all"]
     },
     "copy-from-recipe": {
         "config/": "%CONFIG_DIR%/"

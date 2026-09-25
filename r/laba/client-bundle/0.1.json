@@ -4,7 +4,7 @@
             "ref": "main",
             "manifest": {
                 "bundles": {
-                    "Laba\\ClientBundle\\ClientBundle": [
+                    "Laba\\ClientBundle\\LabaClientBundle": [
                         "all"
                     ]
                 },
@@ -16,18 +16,20 @@
                 "config/packages/laba_client.yaml": {
                     "contents": [
                         "laba_client:",
-                        "    global_cache:",
-                        "        enabled: true",
-                        "        dsn: '%env(REDIS_URL)%'",
-                        "        # timeout: 0.5",
-                        "        # cache_prefix: ''",
+                        "    # Read-only Redis cache shared between services (needs ext-redis).",
+                        "    # global_cache:",
+                        "    #     dsn: '%env(REDIS_CACHE_DSN)%'",
+                        "    #     timeout: 2.0",
+                        "    #     cache_prefix: ''",
+                        "",
                         "    clients:",
-                        "        # Example:",
-                        "        # my_api:",
-                        "        #     class: App\\Client\\MyApiClient",
-                        "        #     base_url: 'https://api.example.com'",
-                        "        #     api_key: '%env(MY_API_KEY)%'",
-                        "        #     cache_enabled: true"
+                        "        # payment:",
+                        "        #     class: Laba\\PaymentClient\\PaymentClient",
+                        "        #     base_url: '%env(PAYMENT_API_URL)%'",
+                        "        #     api_key: '%env(PAYMENT_API_KEY)%'",
+                        "        #     # api_key_header: Authorization    # default: x-api-key",
+                        "        #     # cache_enabled: false",
+                        "        #     # name_converter: serializer.name_converter.camel_case_to_snake_case"
                     ],
                     "executable": false
                 }

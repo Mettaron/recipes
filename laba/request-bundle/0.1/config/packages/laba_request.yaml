@@ -1,7 +1,0 @@
-laba_request:
-    api_request_log:
-        entity: App\Entity\ApiRequestLog
-        excluded_paths:
-            - '^(?!/api)'               # все що не /api/*
-            - '^/api/api_request_logs'  # сам endpoint логів
-        keep_last_per_path: true        # при retention зберігати останній запис на кожен path
