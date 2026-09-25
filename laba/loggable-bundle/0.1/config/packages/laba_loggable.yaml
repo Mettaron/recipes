@@ -1,0 +1,19 @@
+laba_loggable:
+    loggable:
+        # after_commit: log entries are dispatched via Messenger once the transaction is committed
+        # (route Laba\LoggableBundle\Modules\Loggable\Message\PersistLogEntryMessage to an async transport);
+        # outbox: written in the same transaction as the logged entities.
+        default_strategy: after_commit
+        # stack_trace:
+        #     include: ['/src/']
+
+    # retention:
+    #     archive_dir: '%env(LOGGABLE_ARCHIVE_DIR)%'    # for action: archive
+    #     entities:
+    #         log_entry:
+    #             entity: App\Entity\LogEntry
+    #             action: delete                        # delete | archive
+    #             keep_last: '90 days'
+
+    # api_request_log:
+    #     entity: App\Entity\ApiRequestLog
