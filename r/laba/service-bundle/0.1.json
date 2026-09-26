@@ -1,0 +1,32 @@
+{
+    "manifests": {
+        "laba/service-bundle": {
+            "ref": "main",
+            "manifest": {
+                "bundles": {
+                    "Laba\\ServiceBundle\\LabaServiceBundle": [
+                        "all"
+                    ]
+                },
+                "copy-from-recipe": {
+                    "config/": "%CONFIG_DIR%/"
+                }
+            },
+            "files": {
+                "config/packages/laba_service.yaml": {
+                    "contents": [
+                        "laba_service:",
+                        "    # Log of incoming API requests (table api_request_log, create it with a migration):",
+                        "    # usage statistics via \"bin/console laba:service:api-usage\" and GET /api/api_usage.",
+                        "    api_request_log:",
+                        "        enabled: true",
+                        "        keep_last: '90 days'    # older rows are deleted by laba:loggable:apply-retention; null: kept forever",
+                        "",
+                        "# Errors go to Sentry when SENTRY_DSN is set (e.g. in .env.local or the environment of prod)."
+                    ],
+                    "executable": false
+                }
+            }
+        }
+    }
+}

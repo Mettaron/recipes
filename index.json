@@ -1,7 +1,8 @@
 {
     "recipes": {
         "laba/client-bundle": ["0.1"],
-        "laba/loggable-bundle": ["0.1"]
+        "laba/loggable-bundle": ["0.1"],
+        "laba/service-bundle": ["0.1"]
     },
     "_links": {
         "recipe_template": "https://raw.githubusercontent.com/Mettaron/recipes/main/r/{package}/{version}.json",
