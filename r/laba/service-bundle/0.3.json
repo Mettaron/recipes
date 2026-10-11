@@ -1,0 +1,43 @@
+{
+    "manifests": {
+        "laba/service-bundle": {
+            "ref": "main",
+            "manifest": {
+                "bundles": {
+                    "Laba\\ServiceBundle\\LabaServiceBundle": [
+                        "all"
+                    ]
+                },
+                "copy-from-recipe": {
+                    "config/": "%CONFIG_DIR%/"
+                }
+            },
+            "files": {
+                "config/packages/laba_service.yaml": {
+                    "contents": [
+                        "laba_service:",
+                        "    # Log of incoming API requests (table api_request_log, create it with a migration):",
+                        "    # usage statistics via \"bin/console laba:service:api-usage\" and GET /api/api_usage.",
+                        "    api_request_log:",
+                        "        enabled: true",
+                        "        entity_manager: default # entity manager of the api_request_log table, e.g. \"log\" for a separate logs database",
+                        "        keep_last: '90 days'    # older rows are deleted by laba:loggable:apply-retention; null: kept forever",
+                        "",
+                        "    # /api is always protected: only the Laba services listed here can call it, each with its own key",
+                        "    # (x-api-key). A valid key gets ROLE_API and its roles. Locally the keys come from `make secrets`",
+                        "    # of Laba/Traefik (API_CLIENT_<CALLER>_KEY). The API docs (/api, /api/docs) need no key in dev only.",
+                        "    api_access:",
+                        "        clients:",
+                        "            # cms:",
+                        "            #     key: '%env(API_CLIENT_CMS_KEY)%'",
+                        "            #     roles: [ROLE_USERS_READ]          # on top of ROLE_API",
+                        "            #     description: 'Author profiles on CMS pages'",
+                        "",
+                        "# Errors go to Sentry when SENTRY_DSN is set (e.g. in .env.local or the environment of prod)."
+                    ],
+                    "executable": false
+                }
+            }
+        }
+    }
+}
