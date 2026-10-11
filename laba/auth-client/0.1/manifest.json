@@ -1,0 +1,12 @@
+{
+    "bundles": {
+        "Laba\\AuthClient\\LabaAuthClientBundle": ["all"]
+    },
+    "copy-from-recipe": {
+        "config/": "%CONFIG_DIR%/"
+    },
+    "env": {
+        "AUTH_API_URL": "http://auth.local/api",
+        "AUTH_API_KEY": ""
+    }
+}

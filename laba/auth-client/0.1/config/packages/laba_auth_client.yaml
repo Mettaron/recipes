@@ -1,0 +1,5 @@
+laba_client:
+    clients:
+        auth:
+            base_url: '%env(AUTH_API_URL)%'
+            api_key: '%env(AUTH_API_KEY)%'

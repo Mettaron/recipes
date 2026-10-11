@@ -1,0 +1,33 @@
+{
+    "manifests": {
+        "laba/auth-client": {
+            "ref": "main",
+            "manifest": {
+                "bundles": {
+                    "Laba\\AuthClient\\LabaAuthClientBundle": [
+                        "all"
+                    ]
+                },
+                "copy-from-recipe": {
+                    "config/": "%CONFIG_DIR%/"
+                },
+                "env": {
+                    "AUTH_API_URL": "http://auth.local/api",
+                    "AUTH_API_KEY": ""
+                }
+            },
+            "files": {
+                "config/packages/laba_auth_client.yaml": {
+                    "contents": [
+                        "laba_client:",
+                        "    clients:",
+                        "        auth:",
+                        "            base_url: '%env(AUTH_API_URL)%'",
+                        "            api_key: '%env(AUTH_API_KEY)%'"
+                    ],
+                    "executable": false
+                }
+            }
+        }
+    }
+}
