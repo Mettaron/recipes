@@ -1,0 +1,83 @@
+#!/usr/bin/env python3
+"""Compile the Flex recipes: laba/<package>/<version>/ (manifest.json + files) -> r/laba/<package>/<version>.json
+and the list of recipes in index.json. Flex reads only r/ and index.json.
+
+    bin/compile          write r/ and index.json
+    bin/compile --check  exit 1 if r/ or index.json are out of date (nothing is written)
+
+Standard library only.
+"""
+
+import json
+import re
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+SOURCES = ROOT / "laba"
+COMPILED = ROOT / "r" / "laba"
+INDEX = ROOT / "index.json"
+
+
+def version_key(version: str) -> tuple[int, ...]:
+    return tuple(int(part) for part in version.split("."))
+
+
+def dump(data: dict) -> str:
+    return json.dumps(data, indent=4, ensure_ascii=False) + "\n"
+
+
+def dump_index(data: dict) -> str:
+    """Like dump(), but a list of versions stays on one line: "laba/x": ["0.1", "0.2"]."""
+    return re.sub(r'\[\s+("[^"\]]*"(?:,\s+"[^"\]]*")*)\s+\]', lambda m: "[" + re.sub(r",\s+", ", ", m.group(1)) + "]", dump(data))
+
+
+def compile_recipe(package: str, directory: Path) -> str:
+    manifest = json.loads((directory / "manifest.json").read_text())
+    files = {}
+    for file in sorted(p for p in directory.rglob("*") if p.is_file() and p.name != "manifest.json"):
+        contents = file.read_text()
+        files[str(file.relative_to(directory))] = {
+            "contents": contents.removesuffix("\n").split("\n"),
+            "executable": False,
+        }
+    return dump({"manifests": {f"laba/{package}": {"ref": "main", "manifest": manifest, "files": files}}})
+
+
+def main() -> int:
+    check = "--check" in sys.argv
+    expected: dict[Path, str] = {}
+    recipes: dict[str, list[str]] = {}
+
+    for package_dir in sorted(p for p in SOURCES.iterdir() if p.is_dir()):
+        versions = sorted((p.name for p in package_dir.iterdir() if (p / "manifest.json").is_file()), key=version_key)
+        recipes[f"laba/{package_dir.name}"] = versions
+        for version in versions:
+            expected[COMPILED / package_dir.name / f"{version}.json"] = compile_recipe(package_dir.name, package_dir / version)
+
+    index = json.loads(INDEX.read_text())
+    index["recipes"] = recipes
+    expected[INDEX] = dump_index(index)
+
+    stale = [path for path, content in expected.items() if not path.is_file() or path.read_text() != content]
+    orphans = [path for path in COMPILED.rglob("*.json") if path not in expected]
+
+    if check:
+        for path in stale:
+            print(f"out of date: {path.relative_to(ROOT)}")
+        for path in orphans:
+            print(f"no source: {path.relative_to(ROOT)}")
+        return 1 if stale or orphans else 0
+
+    for path in stale:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(expected[path])
+        print(f"written: {path.relative_to(ROOT)}")
+    for path in orphans:
+        path.unlink()
+        print(f"removed (no source): {path.relative_to(ROOT)}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
