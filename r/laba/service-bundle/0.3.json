@@ -10,7 +10,13 @@
                 },
                 "copy-from-recipe": {
                     "config/": "%CONFIG_DIR%/"
-                }
+                },
+                "post-install-output": [
+                    "  * <fg=blue>laba/service-bundle</>: /api is protected by the <comment>laba_api</> firewall of your service.",
+                    "    Add it to <comment>config/packages/security.yaml</>, before <comment>main</> (the snippet:",
+                    "    https://github.com/Mettaron/ServiceBundle/blob/main/docs/index.md, \"Доступ до API\"),",
+                    "    and give the calling services their keys in <comment>laba_service.api_access.clients</>."
+                ]
             },
             "files": {
                 "config/packages/laba_service.yaml": {
