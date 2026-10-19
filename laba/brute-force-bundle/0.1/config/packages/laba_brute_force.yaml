@@ -1,0 +1,44 @@
+# Counters and bans: the Redis of this service (REDIS_DSN), shared by all its containers and saved to disk.
+framework:
+    cache:
+        pools:
+            cache.brute_force:
+                adapter: cache.adapter.redis
+                provider: '%env(REDIS_DSN)%'
+    lock:
+        brute_force: '%env(REDIS_DSN)%'
+
+laba_brute_force:
+    # storage:
+    #     cache: cache.brute_force
+    #     lock: lock.brute_force.factory
+
+    ip:
+        # A service behind another one (the IP in a header) gives its own UserIpResolverInterface;
+        # by default the client IP of the request (behind Traefik: TRUSTED_PROXIES).
+        # resolver: App\Security\UserIpResolver
+        skip: []
+        # Scopes (Attempt::$scope) that must have an IP of the user: 400 without it.
+        require: []
+
+    rules:
+        # Keys of the values of an attempt, besides "ip".
+        keys: [identifier]
+        default: { limit: 5, interval: 900, ban: 900, count: failures, reset_on_success: true }
+        actions:
+            # The identifier and the IP together first, so a guesser bans itself, not the user;
+            # the identifier from every IP with a higher limit; the IP alone.
+            # password:
+            #     - { by: [identifier, ip] }
+            #     - { by: [identifier], limit: 50, interval: 3600, ban: 3600 }
+            #     - { by: [ip], limit: 30, interval: 3600, ban: 3600, reset_on_success: false }
+
+when@test:
+    framework:
+        cache:
+            pools:
+                cache.brute_force:
+                    adapter: cache.adapter.filesystem
+                    provider: null
+        lock:
+            brute_force: flock

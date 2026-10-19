@@ -1,0 +1,79 @@
+{
+    "manifests": {
+        "laba/brute-force-bundle": {
+            "ref": "main",
+            "manifest": {
+                "bundles": {
+                    "Laba\\BruteForceBundle\\LabaBruteForceBundle": [
+                        "all"
+                    ]
+                },
+                "copy-from-recipe": {
+                    "config/": "%CONFIG_DIR%/"
+                },
+                "env": {
+                    "#1": "Redis of this service only (appendonly, noeviction): the counters and bans of laba_brute_force.",
+                    "#2": "Not laba_redis, the cache shared between services: it may lose or evict keys.",
+                    "REDIS_DSN": "redis://redis:6379"
+                },
+                "post-install-output": [
+                    "  * <fg=blue>laba/brute-force-bundle</>: add the Redis of your service to <comment>docker/compose.yaml</>",
+                    "    (<comment>redis-server --appendonly yes --maxmemory-policy noeviction</>, a volume, the default network only)",
+                    "    and list the guarded actions in <comment>laba_brute_force.rules.actions</>:",
+                    "    https://github.com/Mettaron/BruteForceBundle/blob/main/docs/index.md"
+                ]
+            },
+            "files": {
+                "config/packages/laba_brute_force.yaml": {
+                    "contents": [
+                        "# Counters and bans: the Redis of this service (REDIS_DSN), shared by all its containers and saved to disk.",
+                        "framework:",
+                        "    cache:",
+                        "        pools:",
+                        "            cache.brute_force:",
+                        "                adapter: cache.adapter.redis",
+                        "                provider: '%env(REDIS_DSN)%'",
+                        "    lock:",
+                        "        brute_force: '%env(REDIS_DSN)%'",
+                        "",
+                        "laba_brute_force:",
+                        "    # storage:",
+                        "    #     cache: cache.brute_force",
+                        "    #     lock: lock.brute_force.factory",
+                        "",
+                        "    ip:",
+                        "        # A service behind another one (the IP in a header) gives its own UserIpResolverInterface;",
+                        "        # by default the client IP of the request (behind Traefik: TRUSTED_PROXIES).",
+                        "        # resolver: App\\Security\\UserIpResolver",
+                        "        skip: []",
+                        "        # Scopes (Attempt::$scope) that must have an IP of the user: 400 without it.",
+                        "        require: []",
+                        "",
+                        "    rules:",
+                        "        # Keys of the values of an attempt, besides \"ip\".",
+                        "        keys: [identifier]",
+                        "        default: { limit: 5, interval: 900, ban: 900, count: failures, reset_on_success: true }",
+                        "        actions:",
+                        "            # The identifier and the IP together first, so a guesser bans itself, not the user;",
+                        "            # the identifier from every IP with a higher limit; the IP alone.",
+                        "            # password:",
+                        "            #     - { by: [identifier, ip] }",
+                        "            #     - { by: [identifier], limit: 50, interval: 3600, ban: 3600 }",
+                        "            #     - { by: [ip], limit: 30, interval: 3600, ban: 3600, reset_on_success: false }",
+                        "",
+                        "when@test:",
+                        "    framework:",
+                        "        cache:",
+                        "            pools:",
+                        "                cache.brute_force:",
+                        "                    adapter: cache.adapter.filesystem",
+                        "                    provider: null",
+                        "        lock:",
+                        "            brute_force: flock"
+                    ],
+                    "executable": false
+                }
+            }
+        }
+    }
+}

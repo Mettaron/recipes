@@ -6,12 +6,14 @@ Flex-рецепти пакетів Laba: коли сервіс встановл�
 Сервіси підключають репозиторій у `composer.json` (так уже зроблено в `template-symfony-service`):
 
 ```json
-"extra": {
-    "symfony": {
-        "endpoint": [
-            "https://raw.githubusercontent.com/Mettaron/recipes/main/index.json",
-            "flex://defaults"
-        ]
+{
+    "extra": {
+        "symfony": {
+            "endpoint": [
+                "https://raw.githubusercontent.com/Mettaron/recipes/main/index.json",
+                "flex://defaults"
+            ]
+        }
     }
 }
 ```
@@ -37,6 +39,7 @@ Flex бере рецепт найбільшої версії, не вищої з
 | Пакет | Рецепти | Що змінилось |
 |---|---|---|
 | `laba/auth-client` | 0.1 | |
+| `laba/brute-force-bundle` | 0.1 | сховище лічильників на власному Redis сервісу (`REDIS_DSN`), `when@test` — файли й `flock` |
 | `laba/client-bundle` | 0.1, 0.2 | 0.2: `global_cache` потребує `symfony/cache`; DSN спільного `laba_redis` |
 | `laba/loggable-bundle` | 0.1 | |
 | `laba/service-bundle` | 0.1, 0.2, 0.3 | 0.2: опція `api_request_log.entity_manager`; 0.3: розділ `api_access` (ключі сервісів, що викликають) |

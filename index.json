@@ -1,6 +1,7 @@
 {
     "recipes": {
         "laba/auth-client": ["0.1"],
+        "laba/brute-force-bundle": ["0.1"],
         "laba/client-bundle": ["0.1", "0.2"],
         "laba/loggable-bundle": ["0.1"],
         "laba/service-bundle": ["0.1", "0.2", "0.3"]
