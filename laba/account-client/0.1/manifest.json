@@ -1,0 +1,12 @@
+{
+    "bundles": {
+        "Laba\\AccountClient\\LabaAccountClientBundle": ["all"]
+    },
+    "copy-from-recipe": {
+        "config/": "%CONFIG_DIR%/"
+    },
+    "env": {
+        "ACCOUNT_API_URL": "http://account.local/api",
+        "ACCOUNT_API_KEY": ""
+    }
+}

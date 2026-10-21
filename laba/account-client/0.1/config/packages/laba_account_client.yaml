@@ -1,0 +1,5 @@
+laba_client:
+    clients:
+        account:
+            base_url: '%env(ACCOUNT_API_URL)%'
+            api_key: '%env(ACCOUNT_API_KEY)%'

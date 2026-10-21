@@ -1,0 +1,33 @@
+{
+    "manifests": {
+        "laba/account-client": {
+            "ref": "main",
+            "manifest": {
+                "bundles": {
+                    "Laba\\AccountClient\\LabaAccountClientBundle": [
+                        "all"
+                    ]
+                },
+                "copy-from-recipe": {
+                    "config/": "%CONFIG_DIR%/"
+                },
+                "env": {
+                    "ACCOUNT_API_URL": "http://account.local/api",
+                    "ACCOUNT_API_KEY": ""
+                }
+            },
+            "files": {
+                "config/packages/laba_account_client.yaml": {
+                    "contents": [
+                        "laba_client:",
+                        "    clients:",
+                        "        account:",
+                        "            base_url: '%env(ACCOUNT_API_URL)%'",
+                        "            api_key: '%env(ACCOUNT_API_KEY)%'"
+                    ],
+                    "executable": false
+                }
+            }
+        }
+    }
+}
