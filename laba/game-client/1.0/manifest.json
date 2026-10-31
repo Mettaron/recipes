@@ -1,0 +1,12 @@
+{
+    "bundles": {
+        "Laba\\GameClient\\LabaGameClientBundle": ["all"]
+    },
+    "copy-from-recipe": {
+        "config/": "%CONFIG_DIR%/"
+    },
+    "env": {
+        "GAME_API_URL": "https://game.example.com/api",
+        "GAME_API_KEY": ""
+    }
+}

@@ -1,0 +1,5 @@
+laba_client:
+    clients:
+        game:
+            base_url: '%env(GAME_API_URL)%'
+            api_key: '%env(GAME_API_KEY)%'

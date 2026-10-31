@@ -1,0 +1,33 @@
+{
+    "manifests": {
+        "laba/game-client": {
+            "ref": "main",
+            "manifest": {
+                "bundles": {
+                    "Laba\\GameClient\\LabaGameClientBundle": [
+                        "all"
+                    ]
+                },
+                "copy-from-recipe": {
+                    "config/": "%CONFIG_DIR%/"
+                },
+                "env": {
+                    "GAME_API_URL": "https://game.example.com/api",
+                    "GAME_API_KEY": ""
+                }
+            },
+            "files": {
+                "config/packages/laba_game_client.yaml": {
+                    "contents": [
+                        "laba_client:",
+                        "    clients:",
+                        "        game:",
+                        "            base_url: '%env(GAME_API_URL)%'",
+                        "            api_key: '%env(GAME_API_KEY)%'"
+                    ],
+                    "executable": false
+                }
+            }
+        }
+    }
+}
