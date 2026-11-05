@@ -1,0 +1,21 @@
+{
+    "bundles": {
+        "Laba\\BruteForceBundle\\LabaBruteForceBundle": [
+            "all"
+        ]
+    },
+    "copy-from-recipe": {
+        "config/": "%CONFIG_DIR%/"
+    },
+    "env": {
+        "#1": "Redis of this service only (appendonly, noeviction): the counters and bans of laba_brute_force.",
+        "#2": "Not laba_redis, the cache shared between services: it may lose or evict keys.",
+        "REDIS_DSN": "redis://redis:6379"
+    },
+    "post-install-output": [
+        "  * <fg=blue>laba/brute-force-bundle</>: add the Redis of your service to <comment>docker/compose.yaml</>",
+        "    (<comment>redis-server --appendonly yes --maxmemory-policy noeviction</>, a volume, the default network only)",
+        "    and list the guarded actions in <comment>laba_brute_force.rules.actions</>:",
+        "    https://github.com/Mettaron/BruteForceBundle/blob/main/docs/index.md"
+    ]
+}
