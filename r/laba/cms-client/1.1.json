@@ -1,0 +1,34 @@
+{
+    "manifests": {
+        "laba/cms-client": {
+            "ref": "main",
+            "manifest": {
+                "bundles": {
+                    "Laba\\CmsClient\\LabaCmsClientBundle": [
+                        "all"
+                    ]
+                },
+                "copy-from-recipe": {
+                    "config/": "%CONFIG_DIR%/"
+                },
+                "env": {
+                    "CMS_API_URL": "https://cms.example.com/api",
+                    "CMS_API_KEY": ""
+                }
+            },
+            "files": {
+                "config/packages/laba_cms_client.yaml": {
+                    "contents": [
+                        "laba_client:",
+                        "    clients:",
+                        "        cms:",
+                        "            base_url: '%env(CMS_API_URL)%'",
+                        "            api_key: '%env(CMS_API_KEY)%'",
+                        "            cache_enabled: true     # the answers of cms in laba_client.global_cache first"
+                    ],
+                    "executable": false
+                }
+            }
+        }
+    }
+}

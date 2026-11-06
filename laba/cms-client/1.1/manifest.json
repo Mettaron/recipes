@@ -1,0 +1,12 @@
+{
+    "bundles": {
+        "Laba\\CmsClient\\LabaCmsClientBundle": ["all"]
+    },
+    "copy-from-recipe": {
+        "config/": "%CONFIG_DIR%/"
+    },
+    "env": {
+        "CMS_API_URL": "https://cms.example.com/api",
+        "CMS_API_KEY": ""
+    }
+}
