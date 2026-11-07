@@ -40,6 +40,7 @@ Flex бере рецепт найбільшої версії, не вищої з
 |---|---|---|
 | `laba/account-client` | 0.1 | |
 | `laba/cms-client` | 1.0, 1.1 | 1.1: `cache_enabled: true` (відповіді cms зі спільного кешу) |
+| `laba/notification-client` | 1.0 | |
 | `laba/game-client` | 1.0 | |
 | `laba/auth-client` | 0.1 | |
 | `laba/brute-force-bundle` | 0.1, 1.1 | сховище лічильників на власному Redis сервісу (`REDIS_DSN`), `when@test` — файли й `flock`; 1.1: приклади `storage.secret` і `exclusive` |

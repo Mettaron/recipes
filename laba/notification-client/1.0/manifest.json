@@ -1,0 +1,12 @@
+{
+    "bundles": {
+        "Laba\\NotificationClient\\LabaNotificationClientBundle": ["all"]
+    },
+    "copy-from-recipe": {
+        "config/": "%CONFIG_DIR%/"
+    },
+    "env": {
+        "NOTIFICATION_API_URL": "https://notification.example.com/api",
+        "NOTIFICATION_API_KEY": ""
+    }
+}

@@ -7,6 +7,7 @@
         "laba/cms-client": ["1.0", "1.1"],
         "laba/game-client": ["1.0"],
         "laba/loggable-bundle": ["0.1"],
+        "laba/notification-client": ["1.0"],
         "laba/service-bundle": ["0.1", "0.2", "0.3"]
     },
     "_links": {

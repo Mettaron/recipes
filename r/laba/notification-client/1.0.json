@@ -1,0 +1,33 @@
+{
+    "manifests": {
+        "laba/notification-client": {
+            "ref": "main",
+            "manifest": {
+                "bundles": {
+                    "Laba\\NotificationClient\\LabaNotificationClientBundle": [
+                        "all"
+                    ]
+                },
+                "copy-from-recipe": {
+                    "config/": "%CONFIG_DIR%/"
+                },
+                "env": {
+                    "NOTIFICATION_API_URL": "https://notification.example.com/api",
+                    "NOTIFICATION_API_KEY": ""
+                }
+            },
+            "files": {
+                "config/packages/laba_notification_client.yaml": {
+                    "contents": [
+                        "laba_client:",
+                        "    clients:",
+                        "        notification:",
+                        "            base_url: '%env(NOTIFICATION_API_URL)%'",
+                        "            api_key: '%env(NOTIFICATION_API_KEY)%'"
+                    ],
+                    "executable": false
+                }
+            }
+        }
+    }
+}
