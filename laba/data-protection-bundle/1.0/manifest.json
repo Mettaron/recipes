@@ -1,0 +1,8 @@
+{
+    "bundles": {
+        "Laba\\DataProtectionBundle\\LabaDataProtectionBundle": ["all"]
+    },
+    "copy-from-recipe": {
+        "config/": "%CONFIG_DIR%/"
+    }
+}

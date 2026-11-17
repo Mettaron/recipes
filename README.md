@@ -45,7 +45,8 @@ Flex бере рецепт найбільшої версії, не вищої з
 | `laba/auth-client` | 0.1 | |
 | `laba/brute-force-bundle` | 0.1, 1.1 | сховище лічильників на власному Redis сервісу (`REDIS_DSN`), `when@test` — файли й `flock`; 1.1: приклади `storage.secret` і `exclusive` |
 | `laba/client-bundle` | 0.1, 0.2 | 0.2: `global_cache` потребує `symfony/cache`; DSN спільного `laba_redis` |
-| `laba/loggable-bundle` | 0.1 | |
+| `laba/loggable-bundle` | 0.1, 1.1 | 1.1: приклад `loggable.sensitive_data` (групи для історії) |
+| `laba/data-protection-bundle` | 1.0 | чутливі поля в логах і Sentry, контекст запиту, публічні id |
 | `laba/service-bundle` | 0.1, 0.2, 0.3 | 0.2: опція `api_request_log.entity_manager`; 0.3: розділ `api_access` (ключі сервісів, що викликають) |
 
 Пакети без рецепта (`laba/request-bundle`, `laba/lib-bundle`) Flex реєструє сам (auto-generated recipe):

@@ -1,0 +1,16 @@
+laba_data_protection:
+    # Fields encoded before they reach the logs (Monolog) and Sentry events. In a Laba service
+    # laba/service-bundle sets the groups tokens, credentials and pii: replace one by its name or add your own.
+    sensitive_data:
+        groups: {}
+        #     payment: { method: filter, fields: [card_number, cvv] }    # sha256 | hmac | filter, or encoder: <service id>
+
+    # The HTTP request in extra.request of every log record (sensitive body fields only, encoded).
+    # request_context:
+    #     headers: ['User-Agent']
+
+    # Public ids instead of the internal ones of #[PublicId] properties in the requests of API Platform:
+    # only in a service that answers outside (front-api). PUBLIC_ID_KEY: bin2hex(random_bytes(16)).
+    # public_id:
+    #     enabled: true
+    #     key: '%env(PUBLIC_ID_KEY)%'
