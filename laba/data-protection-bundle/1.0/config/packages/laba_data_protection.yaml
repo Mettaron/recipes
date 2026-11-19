@@ -4,10 +4,11 @@ laba_data_protection:
     sensitive_data:
         groups: {}
         #     payment: { method: filter, fields: [card_number, cvv] }    # sha256 | hmac | filter | prefix, or encoder: <service id>
+        # Secrets in the path of a URL: a named group is encoded as that field, any other group is [filtered].
+        # paths: ['^/api/login/code/(?<auth_code>[^/]+)$']
 
-    # The HTTP request in extra.request of every log record (sensitive body fields only, encoded).
-    # request_context:
-    #     headers: ['User-Agent']
+    # The HTTP request in extra.request of every log record: laba_request.request_context of laba/request-bundle
+    # (what to add); this bundle encodes it by the groups and paths above.
 
     # Public ids instead of the internal ones of #[PublicId] properties (API Platform, Symfony Serializer, JMS,
     # #[MapPublicId]): only in a service that answers outside (front-api). PUBLIC_ID_KEY: bin2hex(random_bytes(16)).

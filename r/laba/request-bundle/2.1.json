@@ -1,0 +1,30 @@
+{
+    "manifests": {
+        "laba/request-bundle": {
+            "ref": "main",
+            "manifest": {
+                "bundles": {
+                    "Laba\\RequestBundle\\LabaRequestBundle": [
+                        "all"
+                    ]
+                },
+                "copy-from-recipe": {
+                    "config/": "%CONFIG_DIR%/"
+                }
+            },
+            "files": {
+                "config/packages/laba_request.yaml": {
+                    "contents": [
+                        "laba_request:",
+                        "    # The HTTP request in extra.request of every log record, as it is: laba/data-protection-bundle encodes its sensitive",
+                        "    # fields (sensitive_data groups by the names, the url by the paths). Off by default.",
+                        "    # request_context:",
+                        "    #     headers: ['User-Agent', 'X-User-Ip']",
+                        "    #     body: [token, password]    # the body fields to add; none by default"
+                    ],
+                    "executable": false
+                }
+            }
+        }
+    }
+}
